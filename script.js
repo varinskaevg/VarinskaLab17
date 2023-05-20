@@ -49,23 +49,36 @@ function playGuessNumberGame() {
         attempts++;
 
         if (parsedGuess === randomNumber) {
-            var resultElement = document.getElementById("result");
-            resultElement.textContent = "Ви вгадали число! За " + attempts + " спроб ви вгадали число " + randomNumber;
+            alert("Ви вгадали число! За " + attempts + " спроб ви вгадали число " + randomNumber);
             guessed = true;
-            console.log("Ви вгадали число!");
         } else {
             var difference = Math.abs(parsedGuess - randomNumber);
+            var message = "";
 
             if (difference < 10) {
-                alert("Гаряче!");
+                if (parsedGuess < randomNumber) {
+                    message = "Тепло більше!";
+                } else {
+                    message = "Тепло менше!";
+                }
             } else if (difference < 30) {
-                alert("Тепло!");
+                if (parsedGuess < randomNumber) {
+                    message = "Гаряче більше!";
+                } else {
+                    message = "Гаряче менше!";
+                }
             } else {
-                alert("Холодно!");
+                if (parsedGuess < randomNumber) {
+                    message = "Холодно більше!";
+                } else {
+                    message = "Холодно менше!";
+                }
             }
 
-            console.log(new Date().toLocaleString() + " Спроба " + attempts + ": число " + parsedGuess + " – не вірно");
+            alert(message);
         }
+
+        console.log(new Date().toLocaleString() + " Спроба " + attempts + ": число " + parsedGuess + " – не вірно");
     }
 
     var playAgain = confirm("Бажаєте зіграти ще раз?");
